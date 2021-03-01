@@ -5,7 +5,7 @@ export const Header = () => {
         <header>
             <div className="content-inner content-header">
                 <div className="sidebar-brand d-flex align-items-center">
-                    <div classNameName="brand">
+                    <div className="brand">
                         <img src={logo} className="img-responsive"/>
                     </div>
                     <div className="sidebar-brand-text mx-3">
@@ -29,7 +29,7 @@ export const Header = () => {
                             Requerimientos
                             </a>
                         </div>
-                        </li>
+                        </li>  
                     </ul>
                 </div>
             </div>
