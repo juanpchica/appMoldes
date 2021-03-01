@@ -15,8 +15,7 @@ export const Moldes = () => {
         setIsLoading(false);
         setMoldes(moldes);
     }
-
-
+    
     useEffect(()=>{
         fetchMoldes();
     },[]);
