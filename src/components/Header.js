@@ -1,12 +1,12 @@
 import React from 'react'
-
+import logo from '../img/logo.PNG'
 export const Header = () => {
     return (
         <header>
             <div className="content-inner content-header">
                 <div className="sidebar-brand d-flex align-items-center">
                     <div classNameName="brand">
-                        <img src="assets/img/logo.PNG" className="img-responsive"/>
+                        <img src={logo} className="img-responsive"/>
                     </div>
                     <div className="sidebar-brand-text mx-3">
                         ESPECIFICACIONES TÉCNICAS <br/>MAGNETRON S.A.S
