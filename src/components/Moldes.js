@@ -11,9 +11,9 @@ export const Moldes = () => {
     const fetchMoldes = async() => {
         const response = await fetch(apiURL);
         const moldes = await response.json();
-        
+         
         setIsLoading(false);
-        setMoldes(moldes);
+        setMoldes(moldes); 
     }
     
     useEffect(()=>{
