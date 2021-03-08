@@ -1,6 +1,4 @@
 import React, { useState,useEffect } from 'react'
-import { Grid } from 'ag-grid-community';
-import { render } from 'react-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -25,18 +23,15 @@ export const Moldes = () => {
         fetchMoldes();
     },[]);
 
-    const [gridApi, setGridApi] = useState(null);
-    const [gridColumnApi, setGridColumnApi] = useState(null);
 
     return (
-        <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+        <div className="ag-theme-alpine" style={{ height: 400, width: '100%' }}>
             <AgGridReact
-                onGridReady={onGridReady}
                 rowData={moldes}>
-                <AgGridColumn field="dimensiones"></AgGridColumn>
-                <AgGridColumn field="cantidad"></AgGridColumn>
-                <AgGridColumn field="ubicacion"></AgGridColumn>
-                <AgGridColumn field="tipo"></AgGridColumn>
+                <AgGridColumn field="dimensiones" sortable={ true } filter={true }></AgGridColumn>
+                <AgGridColumn field="cantidad" sortable={ true } filter={true }></AgGridColumn>
+                <AgGridColumn field="ubicacion" sortable={ true } filter={true }></AgGridColumn>
+                <AgGridColumn field="tipo" sortable={ true } filter={true }></AgGridColumn>
             </AgGridReact>
         </div>
     )
