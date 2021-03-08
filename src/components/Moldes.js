@@ -1,5 +1,10 @@
 import React, { useState,useEffect } from 'react'
-import { Table } from 'react-bootstrap'
+import { Grid } from 'ag-grid-community';
+import { render } from 'react-dom';
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 export const Moldes = () => {
     const apiURL = 'http://localhost:8084/apiMoldes/api/moldes'
