@@ -3,7 +3,7 @@ import { Moldes } from './Moldes'
 
 export const Body = () => {
     return (
-        <section>
+        <section className="content-section">
             <Moldes/>
         </section>
     )

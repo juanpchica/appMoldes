@@ -13218,3 +13218,9 @@ li.nav-item a.dropdown-item i {
     margin-left: 0px;
   }
 }
+
+.content-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px 25px;
+}

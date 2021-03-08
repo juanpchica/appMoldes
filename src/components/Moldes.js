@@ -20,29 +20,19 @@ export const Moldes = () => {
         fetchMoldes();
     },[]);
 
-    if(isLoading) return <div>Cargando Datos...</div>
+    const [gridApi, setGridApi] = useState(null);
+    const [gridColumnApi, setGridColumnApi] = useState(null);
+
     return (
-        <Table striped bordered hover>
-            <thead>
-                <tr>
-                <th>Dimensiones</th>
-                <th>Cantidad</th>
-                <th>Ubicación</th>
-                <th>Tipo</th>
-                </tr>
-            </thead>
-            <tbody>
-                { moldes.map((molde,index)=>{
-                    return (
-                        <tr key={index}>
-                            <td>{molde.dimensiones}</td>
-                            <td>{molde.cantidad}</td>
-                            <td>C: {molde.columna} L: {molde.lado}</td>
-                            <td>{molde.tipo}</td>
-                        </tr>
-                    )
-                })}
-            </tbody>
-        </Table>
+        <div className="ag-theme-alpine" style={{ height: 400, width: 600 }}>
+            <AgGridReact
+                onGridReady={onGridReady}
+                rowData={moldes}>
+                <AgGridColumn field="dimensiones"></AgGridColumn>
+                <AgGridColumn field="cantidad"></AgGridColumn>
+                <AgGridColumn field="ubicacion"></AgGridColumn>
+                <AgGridColumn field="tipo"></AgGridColumn>
+            </AgGridReact>
+        </div>
     )
 }
