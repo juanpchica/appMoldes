@@ -12990,8 +12990,8 @@ ul.list-notas {
 }
 
 header {
-  background: #0068b3;
   padding: 10px 0;
+  background-color: #404a50;
 }
 .content-inner {
   max-width: 1200px;
@@ -13006,7 +13006,7 @@ header {
   background-color: #e4e8e8 !important;
 }
 .ag-header-viewport {
-  background: #0068b3;
+  background: #404a50;
   color: white;
 }
 .ag-header-row.ag-header-row-column,

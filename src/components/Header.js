@@ -9,7 +9,7 @@ export const Header = () => {
                         <img src={logo} className="img-responsive"/>
                     </div>
                     <div className="sidebar-brand-text mx-3">
-                        ESPECIFICACIONES TÉCNICAS <br/>MAGNETRON S.A.S
+                        MOLDES BOBINAS <br/>MAGNETRON S.A.S
                     </div>
                 </div>
                 <div className="content-menu">
