@@ -35,6 +35,7 @@ export const Moldes = () => {
                 paginationPageSize={250}
                 paginationAutoPageSize={true}
                 >
+                <AgGridColumn field="id" sortable={ true } filter={false } resizable={true} flex={1} ></AgGridColumn>
                 <AgGridColumn field="dimensiones" sortable={ true } filter={true } resizable={true} flex={1} ></AgGridColumn>
                 <AgGridColumn field="cantidad" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
                 <AgGridColumn field="ubicacion" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
