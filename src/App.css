@@ -13224,3 +13224,11 @@ li.nav-item a.dropdown-item i {
   margin: 0 auto;
   padding: 50px 25px;
 }
+
+section.content-form-molde {
+  max-width: 70vw;
+  margin: 40px auto;
+  padding: 3rem;
+  border: 1px solid #e0dcdc;
+  border-radius: 5px;
+}
