@@ -29,13 +29,7 @@ export const Molde = () => {
 
         const requestOptions = {
             method: 'PUT',
-            headers: { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Origin':'http://localhost:3000'
-            },
-            body: JSON.stringify(molde),
-            mode:'cors'
+            body: JSON.stringify(molde)
         };
         fetch(apiURL+'/actualizar', requestOptions)
             .then(response =>{
