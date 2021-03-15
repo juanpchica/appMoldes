@@ -26,9 +26,11 @@ export const Molde = () => {
 
     const updateMolde = (e) => {
         e.preventDefault();
-
+        console.log(molde,"m1");
+        console.log(JSON.stringify(molde),"m2");
         const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
             body: JSON.stringify(molde)
         };
         fetch(apiURL+'/actualizar', requestOptions)
