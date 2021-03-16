@@ -8,16 +8,28 @@ export const Molde = () => {
 
     const apiURL = 'http://localhost:8084/apiMoldes/api/moldes';
     
-    const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id});
+    const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id,soporte:0,boquete:0,estado:1});
+    const [checkState,setCheckState] = useState({soporte:false,boquete:false,estado:false});
     const [isLoading,setIsLoading] = useState(true)
     
+    const asignarCheckStates = () =>{
+        setCheckState({
+            soporte:(molde.soporte==1)?true:false,
+            boquete:(molde.boquete==1)?true:false,
+            estado: (molde.estado==1)?true:false
+        })
+    }
+
     //Fetch data from server
     const fetchMolde = async() => {
+        
         const response = await fetch(apiURL+"?id="+id);
         const molde = await response.json();
          
         setIsLoading(false);
+
         setMolde(molde[0]); 
+        asignarCheckStates();
     }
 
     useEffect(()=>{
@@ -26,13 +38,13 @@ export const Molde = () => {
 
     const updateMolde = (e) => {
         e.preventDefault();
-        console.log(molde,"m1");
-        console.log(JSON.stringify(molde),"m2");
+        console.log(molde);
         const requestOptions = {
-            method: 'POST',
-            headers: {'Content-Type':'application/json'},
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(molde)
         };
+
         fetch(apiURL+'/actualizar', requestOptions)
             .then(response =>{
                 console.log(response);
@@ -40,6 +52,30 @@ export const Molde = () => {
             })
             .then(data => console.log("data"+ data));
     }
+
+    const checkOption = (tipo) => {
+        switch (tipo) {
+            case "boquete":
+                setCheckState({...checkState,boquete:!checkState.boquete});
+                if(checkState.boquete) setMolde({...molde,boquete:1});
+                else setMolde({...molde,boquete:0});
+            break;
+        
+            case "soporte":
+                setCheckState({...checkState,soporte:!checkState.soporte});
+                if(checkState.soporte) setMolde({...molde,soporte:1});
+                else setMolde({...molde,soporte:0});
+            break;
+
+            case "estado":
+                setCheckState({...checkState,estado:!checkState.estado});
+                if(checkState.estado) setMolde({...molde,estado:1});
+                else setMolde({...molde,estado:0});
+            break;
+        }
+        console.log(molde);
+    }
+
 
     if(isLoading) return <div>Cargando datos...</div>
 
@@ -86,15 +122,15 @@ export const Molde = () => {
 
                 <Form.Row>
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Boquete" defaultChecked={molde.boquete} onChange={()=>{setMolde({...molde,boquete:!molde.boquete})}}/>
+                        <Form.Check type="checkbox" label="Boquete" defaultChecked={checkState.boquete} onChange={()=>{checkOption("boquete")}}/>
                     </Form.Group>
 
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Soporte" defaultChecked={molde.soporte} onChange={()=>{setMolde({...molde,soporte:!molde.soporte})}}/>
+                        <Form.Check type="checkbox" label="Soporte" defaultChecked={checkState.soporte} onChange={()=>{checkOption("soporte")}}/>
                     </Form.Group>
 
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Activo" defaultChecked={molde.estado} onChange={()=>{setMolde({...molde,estado:!molde.estado})}}/>
+                        <Form.Check type="checkbox" label="Activo" defaultChecked={checkState.estado} onChange={()=>{checkOption("estado")}}/>
                     </Form.Group>
                 </Form.Row> 
                 <Row>
