@@ -3,6 +3,7 @@ import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import { Button } from 'react-bootstrap';
 
 export const Moldes = () => {
     const apiURL = 'http://localhost:8084/apiMoldes/api/moldes'
@@ -24,7 +25,16 @@ export const Moldes = () => {
         fetchMoldes();
     }
 
+    const cellRenderButton = (props)=>{
+        return <Button onClick={()=>{ver(props.value)}}>Click</Button>
+    }
 
+    const ver = (p)=>{
+        console.log(p);
+    }
+    const frameworkComponents = {
+        'cellRenderButton': cellRenderButton    
+    };
     return (
         <div className="ag-theme-alpine" style={{ height: 600, width: '100%' }}>
             <AgGridReact
@@ -34,8 +44,9 @@ export const Moldes = () => {
                 floatingFilter={true}
                 paginationPageSize={250}
                 paginationAutoPageSize={true}
+                frameworkComponents={frameworkComponents}
                 >
-                <AgGridColumn field="id" sortable={ true } filter={false } resizable={true} flex={1} ></AgGridColumn>
+                <AgGridColumn field="ID" sortable={ true } filter={false } resizable={true} flex={1} cellRenderer="cellRenderButton" ></AgGridColumn>
                 <AgGridColumn field="dimensiones" sortable={ true } filter={true } resizable={true} flex={1} ></AgGridColumn>
                 <AgGridColumn field="cantidad" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
                 <AgGridColumn field="ubicacion" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
