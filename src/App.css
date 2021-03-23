@@ -13232,3 +13232,7 @@ section.content-form-molde {
   border: 1px solid #e0dcdc;
   border-radius: 5px;
 }
+.ag-cell-value,
+.ag-header-cell-label {
+  text-align: center;
+}
