@@ -2,10 +2,11 @@ import React,{ useState,useEffect } from 'react'
 import { useParams, Link } from "react-router-dom";
 
 import { Button,Col,Form,Row } from 'react-bootstrap';
+import logo from '../img/loading.gif';
 
 export const Molde = () => {
     const { id } = useParams();
-
+    
     const apiURL = 'http://localhost:8084/apiMoldes/api/moldes';
     
     const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id});
@@ -40,13 +41,13 @@ export const Molde = () => {
             .then(data => console.log("data"+ data));
     }
 
-    if(isLoading) return <div>Cargando datos...</div>
+    if(isLoading) return <div className="content-loading"><img src={logo} alt="Loading"/></div>
 
     return (
         <section className="content-form-molde">
             
             <Row>
-                <Col><h2>Molde ID: {molde.id}</h2></Col>
+                <Col><h2>Molde ID: {molde.ID}</h2></Col>
                 <Col className="text-right">
                     <Link to="/" className="btn btn-danger">
                         Regresar

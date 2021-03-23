@@ -13236,3 +13236,10 @@ section.content-form-molde {
 .ag-header-cell-label {
   text-align: center;
 }
+.content-loading {
+    max-width: 100px;
+    margin: 100px auto;
+}
+.content-loading img {
+    width: 100%;
+}

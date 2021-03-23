@@ -1,30 +1,26 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState } from 'react'
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import { ArrowRight, PencilSquare } from 'react-bootstrap-icons';
+import {  PencilSquare } from 'react-bootstrap-icons';
 
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
-import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 export const Moldes = () => {
     const apiURL = 'http://localhost:8084/apiMoldes/api/moldes'
     
     const [moldes,setMoldes] = useState([]);
-    const [isLoading,setIsLoading] = useState(true)
     
     //Fetch data from server
     const fetchMoldes = async() => {
         const response = await fetch(apiURL);
         const moldes = await response.json();
          
-        setIsLoading(false);
         setMoldes(moldes); 
     }
 
     const onGridReady = ()=>{
-        
         fetchMoldes();
     }
 
@@ -32,9 +28,6 @@ export const Moldes = () => {
         return <Link to={"/molde/"+props.value}><PencilSquare color="gray" size={25} /></Link>
     }
 
-    const ver = (p)=>{
-        console.log(p);
-    }
     const frameworkComponents = {
         'cellRenderButton': cellRenderButton    
     };
