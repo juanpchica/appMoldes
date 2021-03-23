@@ -19,10 +19,22 @@ export const Molde = () => {
         setIsLoading(false);
         setMolde(molde[0]);
     }
-
+     
     useEffect(()=>{
         fetchMolde();
-    },[])
+    },[]);
+
+    function stringToBoolean(val) {
+  var a = {
+    'true': true,
+    'false': false
+  };
+  return a[val];
+}
+
+    const [test,setTest] = useState(stringToBoolean('false'));
+
+
 
     const updateMolde = (e) => {
         e.preventDefault();
@@ -86,7 +98,7 @@ export const Molde = () => {
 
                 <Form.Row>
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Boquete" defaultChecked={molde.boquete} onChange={()=>{setMolde({...molde,boquete:!molde.boquete});console.log(molde)}} />
+                        <Form.Check type="checkbox" label="Boquete" defaultChecked={test} onChange={()=>{setMolde({...molde,boquete:!molde.boquete});console.log(molde)}} />
                     </Form.Group>
 
                     <Form.Group as={Col}>
