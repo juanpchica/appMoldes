@@ -31,21 +31,34 @@ export const Molde = () => {
 
     const updateMolde = (e) => {
         e.preventDefault();
-        const requestOptions = {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(molde)
-        };
 
-        fetch(apiURL+'/actualizar', requestOptions)
-            .then(response =>{
-                console.log(response);
-                response.json()
-            })
-            .then(data => {
-                console.log("data"+ data);
-                showAlert(true, "Please fill out all fields", "danger");
-            });
+        if(!molde.cantidad){
+            showAlert(true, "Error, campo cantidad no debe ir vacio!!", "danger");
+        }else{
+            const requestOptions = {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(molde)
+            };
+
+            fetch(apiURL+'/actualizar', requestOptions)
+                .then(response =>{
+                    if(response.ok){
+                        console.log(response);
+                        response.json()
+                    }else{
+                        showAlert(true, "Error al actualizar molde", "danger");
+                        throw new Error('Error al actualizar molde - Problema servidor');
+                    }
+                })
+                .then(data => {
+                    showAlert(true, "Molde actualizado correctamente!", "success");
+                }).catch(error =>{
+                    showAlert(true, "Error al actualizar molde", "danger");
+                    console.log(error);
+                });
+        }
+        
     }
 
     if(isLoading) return <div className="content-loading"><img src={logo} alt="Loading"/></div>
