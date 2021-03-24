@@ -7,6 +7,7 @@ import { Molde } from "./components/Molde";
 import { Header } from './components/Header';
 import { Body } from './components/Body';
 import { Error } from './components/Error';
+import { Activar } from "./components/Activar";
 
 function App() { 
   return (
@@ -18,6 +19,9 @@ function App() {
             <Body />
           </Route>
           <Route path="/molde/:id" children={<Molde />}></Route>
+          <Route path="/activar/">
+            <Activar />
+          </Route>
           <Route path="*">
             <Error />
           </Route>

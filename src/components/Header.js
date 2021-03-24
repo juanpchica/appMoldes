@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../img/logo.PNG'
 export const Header = () => {
     return (
@@ -12,6 +13,9 @@ export const Header = () => {
                         MOLDES BOBINAS <br/>MAGNETRON S.A.S
                     </div>
                 </div>
+                <nav className="nav-moldes">
+                    <Link to="/activar/">Administración</Link>
+                </nav>
             </div>
         </header>
     )

@@ -1,5 +1,5 @@
 import React,{ useState,useEffect } from 'react'
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, Redirect } from "react-router-dom";
 
 import { Button,Col,Form,Row } from 'react-bootstrap';
 import logo from '../img/loading.gif';
@@ -12,7 +12,8 @@ export const Molde = () => {
     const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id});
     const [isLoading,setIsLoading] = useState(true)
     const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
-    
+    const [redirect,setRedirect] = useState(false);
+
     const toBoolean = (val) => {
         if(val==='true')
             return true;
@@ -30,7 +31,12 @@ export const Molde = () => {
      
 
     useEffect(()=>{
-        fetchMolde();
+        if(localStorage.getItem("token-molde") && localStorage.getItem("token-molde") === 'ANcVyuP3'){
+            fetchMolde();
+        }else{
+            setRedirect(true);
+        }
+        
     },[]);
 
     const showAlert = (show = false, msg = "", type = "") => {
@@ -66,6 +72,8 @@ export const Molde = () => {
         }
         
     }
+    
+    if (redirect) return <Redirect to="/" />;
 
     if(isLoading) return <div className="content-loading"><img src={logo} alt="Loading"/></div>
 

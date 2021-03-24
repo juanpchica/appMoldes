@@ -13237,9 +13237,27 @@ section.content-form-molde {
   text-align: center;
 }
 .content-loading {
-    max-width: 100px;
-    margin: 100px auto;
+  max-width: 100px;
+  margin: 100px auto;
 }
 .content-loading img {
-    width: 100%;
+  width: 100%;
+}
+nav.nav-moldes a {
+  color: white;
+  line-height: 2;
+  font-size: 14px;
+}
+
+.content-form {
+  max-width: 500px;
+  position: absolute;
+  left: 50%;
+  width: 100%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  border: 1px solid #efebeb;
+  border-radius: 15px;
+  box-shadow: 1px 1px 4px 1px #f3eaea;
 }
