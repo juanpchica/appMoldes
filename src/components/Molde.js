@@ -13,14 +13,22 @@ export const Molde = () => {
     const [isLoading,setIsLoading] = useState(true)
     const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
     
+    const toBoolean = (val) => {
+        if(val==='true')
+            return true;
+        else 
+            return false;
+    }
+    
     //Fetch data from server
     const fetchMolde = async() => {
         const response = await fetch(apiURL+"?id="+id);
         const molde = await response.json();
         setIsLoading(false);
-        setMolde(molde[0]);
+        setMolde({...molde[0],soporte:toBoolean(molde[0].soporte),boquete:toBoolean(molde[0].boquete),estado:toBoolean(molde[0].estado)});
     }
      
+
     useEffect(()=>{
         fetchMolde();
     },[]);
@@ -44,7 +52,6 @@ export const Molde = () => {
             fetch(apiURL+'/actualizar', requestOptions)
                 .then(response =>{
                     if(response.ok){
-                        console.log(response);
                         response.json()
                     }else{
                         showAlert(true, "Error al actualizar molde", "danger");
@@ -55,7 +62,6 @@ export const Molde = () => {
                     showAlert(true, "Molde actualizado correctamente!", "success");
                 }).catch(error =>{
                     showAlert(true, "Error al actualizar molde", "danger");
-                    console.log(error);
                 });
         }
         
@@ -108,15 +114,15 @@ export const Molde = () => {
 
                 <Form.Row>
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Boquete" defaultChecked={molde.boquete} onChange={()=>{setMolde({...molde,boquete:!molde.boquete});console.log(molde)}} />
+                        <Form.Check type="checkbox" label="Boquete" defaultChecked={molde.boquete} onClick={()=>{setMolde({...molde,boquete:!molde.boquete})}} />
                     </Form.Group>
 
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Soporte" defaultChecked={molde.soporte} onChange={()=>{setMolde({...molde,soporte:!molde.soporte})}} />
+                        <Form.Check type="checkbox" label="Soporte" defaultChecked={molde.soporte} onClick={()=>{setMolde({...molde,soporte:!molde.soporte})}} />
                     </Form.Group>
 
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Activo" defaultChecked={molde.estado} onChange={()=>{setMolde({...molde,estado:!molde.estado})}}/>
+                        <Form.Check type="checkbox" label="Activo" defaultChecked={molde.estado} onClick={()=>{setMolde({...molde,estado:!molde.estado})}}/>
                     </Form.Group>
                 </Form.Row> 
                 <Row>
