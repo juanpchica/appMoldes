@@ -46,7 +46,7 @@ export const Moldes = () => {
                 <AgGridColumn field="cantidad" headerName="CANTIDAD" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
                 <AgGridColumn field="ubicacion" headerName="UBICACIÓN" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
                 <AgGridColumn field="tipo" headerName="TIPO" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
-                <AgGridColumn field="ID" headerName="EDITAR"sortable={ true } width="100" filter={false } resizable={true} cellRenderer="cellRenderButton" ></AgGridColumn>
+                <AgGridColumn field="id" headerName="EDITAR"sortable={ true } width="100" filter={false } resizable={true} cellRenderer="cellRenderButton" ></AgGridColumn>
             </AgGridReact>
         </div>
     )

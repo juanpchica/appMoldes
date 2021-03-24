@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { Button,Col,Form,Row } from 'react-bootstrap';
 import logo from '../img/loading.gif';
-
+import {Alert} from '../components/Alert';
 export const Molde = () => {
     const { id } = useParams();
     
@@ -11,6 +11,7 @@ export const Molde = () => {
     
     const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id});
     const [isLoading,setIsLoading] = useState(true)
+    const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
     
     //Fetch data from server
     const fetchMolde = async() => {
@@ -24,21 +25,12 @@ export const Molde = () => {
         fetchMolde();
     },[]);
 
-    function stringToBoolean(val) {
-  var a = {
-    'true': true,
-    'false': false
-  };
-  return a[val];
-}
-
-    const [test,setTest] = useState(stringToBoolean('false'));
-
-
+    const showAlert = (show = false, msg = "", type = "") => {
+        setAlert({ show, msg, type });
+    };
 
     const updateMolde = (e) => {
         e.preventDefault();
-        console.log(JSON.stringify(molde));
         const requestOptions = {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
@@ -50,16 +42,21 @@ export const Molde = () => {
                 console.log(response);
                 response.json()
             })
-            .then(data => console.log("data"+ data));
+            .then(data => {
+                console.log("data"+ data);
+                showAlert(true, "Please fill out all fields", "danger");
+            });
     }
 
     if(isLoading) return <div className="content-loading"><img src={logo} alt="Loading"/></div>
 
     return (
         <section className="content-form-molde">
-            
+            {alert.show && (
+                <Alert action={alert} removeAlert={showAlert}  />
+            )}
             <Row>
-                <Col><h2>Molde ID: {molde.ID}</h2></Col>
+                <Col><h2>Molde ID: {molde.id}</h2></Col>
                 <Col className="text-right">
                     <Link to="/" className="btn btn-danger">
                         Regresar
@@ -98,7 +95,7 @@ export const Molde = () => {
 
                 <Form.Row>
                     <Form.Group as={Col}>
-                        <Form.Check type="checkbox" label="Boquete" defaultChecked={test} onChange={()=>{setMolde({...molde,boquete:!molde.boquete});console.log(molde)}} />
+                        <Form.Check type="checkbox" label="Boquete" defaultChecked={molde.boquete} onChange={()=>{setMolde({...molde,boquete:!molde.boquete});console.log(molde)}} />
                     </Form.Group>
 
                     <Form.Group as={Col}>
