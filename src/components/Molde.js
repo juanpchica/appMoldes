@@ -23,7 +23,7 @@ export const Molde = () => {
     
     //Fetch data from server
     const fetchMolde = async() => {
-        const response = await fetch(apiURL+"?id="+id);
+        const response = await fetch(apiURL+"?id="+id+'&token='+localStorage.getItem("token-molde"));
         const molde = await response.json();
         setIsLoading(false);
         setMolde({...molde[0],soporte:toBoolean(molde[0].soporte),boquete:toBoolean(molde[0].boquete),estado:toBoolean(molde[0].estado)});

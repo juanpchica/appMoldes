@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import {  PencilSquare } from 'react-bootstrap-icons';
+import {  PencilSquare, XSquare } from 'react-bootstrap-icons';
 
 
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -8,7 +8,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Link } from 'react-router-dom';
 
 export const Moldes = () => {
-    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes'
+    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes?token='+localStorage.getItem("token-molde");
     
     const [moldes,setMoldes] = useState([]);
     
@@ -25,7 +25,11 @@ export const Moldes = () => {
     }
 
     const cellRenderButton = (props)=>{
-        return <Link to={"/molde/"+props.value}><PencilSquare color="gray" size={25} /></Link>
+
+
+        return (<div>
+            {(props.value===0)?<XSquare color="red" size={25} />:<Link to={"/molde/"+props.value}><PencilSquare color="gray" size={25} /></Link>}
+        </div>);
     }
 
     const frameworkComponents = {
