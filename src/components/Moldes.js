@@ -24,6 +24,10 @@ export const Moldes = () => {
         fetchMoldes();
     }
 
+    const testRow = ()=>{
+        console.log(moldes);
+    }
+
     const cellRenderButton = (props)=>{
         return (<div>
             {(props.value===0)?<XSquare color="red" size={25} />:<Link to={"/molde/"+props.value}><PencilSquare color="gray" size={25} /></Link>}
