@@ -7,7 +7,7 @@ import {Alert} from '../components/Alert';
 export const Molde = () => {
     const { id } = useParams();
     
-    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes/molde';
+    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes';
     
     const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id});
     const [isLoading,setIsLoading] = useState(true)
@@ -23,7 +23,7 @@ export const Molde = () => {
     
     //Fetch data from server
     const fetchMolde = async() => {
-        const response = await fetch(apiURL+"?id="+id+'&token='+localStorage.getItem("token-molde"));
+        const response = await fetch(apiURL+"/molde?id="+id+'&token='+localStorage.getItem("token-molde"));
         if(response.ok){
             const molde = await response.json();
             setIsLoading(false);

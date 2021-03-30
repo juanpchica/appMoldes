@@ -35,8 +35,11 @@ export const Moldes = () => {
     };
 
     const getRowStyle  = params => {
+        if (params.data.nuevo === 1) {
+            return { background: '#bae0ba' };
+        }
 		if (params.data.estado === "false") {
-            return { background: 'red' };
+            return { background: '#f16868' };
         }
 	};
 
