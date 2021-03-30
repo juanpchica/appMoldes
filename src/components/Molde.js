@@ -45,6 +45,7 @@ export const Molde = () => {
 
     const updateMolde = (e) => {
         e.preventDefault();
+        console.log(JSON.stringify(molde));
 
         if(!molde.cantidad){
             showAlert(true, "Error, campo cantidad no debe ir vacio!!", "danger");

@@ -24,10 +24,6 @@ export const Moldes = () => {
         fetchMoldes();
     }
 
-    const testRow = ()=>{
-        console.log(moldes);
-    }
-
     const cellRenderButton = (props)=>{
         return (<div>
             {(props.value===0)?<XSquare color="red" size={25} />:<Link to={"/molde/"+props.value}><PencilSquare color="gray" size={25} /></Link>}
@@ -37,6 +33,13 @@ export const Moldes = () => {
     const frameworkComponents = {
         'cellRenderButton': cellRenderButton    
     };
+
+    const getRowStyle  = params => {
+		if (params.data.estado === "false") {
+            return { background: 'red' };
+        }
+	};
+
     return (
         <div className="ag-theme-alpine" style={{ height: 600, width: '100%' }}>
             <AgGridReact
@@ -47,6 +50,7 @@ export const Moldes = () => {
                 paginationPageSize={250}
                 paginationAutoPageSize={true}
                 frameworkComponents={frameworkComponents}
+                getRowStyle={getRowStyle}
                 >
                 <AgGridColumn field="dimensiones" headerName="DIMENSIONES" sortable={ true } filter={true } resizable={true} flex={1} ></AgGridColumn>
                 <AgGridColumn field="cantidad" headerName="CANTIDAD" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
