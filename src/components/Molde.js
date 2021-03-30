@@ -7,7 +7,7 @@ import {Alert} from '../components/Alert';
 export const Molde = () => {
     const { id } = useParams();
     
-    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes';
+    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes/molde';
     
     const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id});
     const [isLoading,setIsLoading] = useState(true)
@@ -24,9 +24,14 @@ export const Molde = () => {
     //Fetch data from server
     const fetchMolde = async() => {
         const response = await fetch(apiURL+"?id="+id+'&token='+localStorage.getItem("token-molde"));
-        const molde = await response.json();
-        setIsLoading(false);
-        setMolde({...molde[0],soporte:toBoolean(molde[0].soporte),boquete:toBoolean(molde[0].boquete),estado:toBoolean(molde[0].estado)});
+        if(response.ok){
+            const molde = await response.json();
+            setIsLoading(false);
+            setMolde({...molde,soporte:toBoolean(molde.soporte),boquete:toBoolean(molde.boquete),estado:toBoolean(molde.estado)});
+        }else{
+            setRedirect(true);
+        }
+        
     }
      
 
@@ -36,7 +41,6 @@ export const Molde = () => {
         }else{
             setRedirect(true);
         }
-        
     },[]);
 
     const showAlert = (show = false, msg = "", type = "") => {
