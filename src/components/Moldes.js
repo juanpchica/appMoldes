@@ -34,6 +34,10 @@ export const Moldes = () => {
         'cellRenderButton': cellRenderButton    
     };
 
+    const test = ()=>{
+        console.log("it works");
+    }
+
     const getRowStyle  = params => {
         if (params.data.nuevo === 1) {
             return { background: '#bae0ba' };
