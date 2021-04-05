@@ -35,7 +35,7 @@ export const Moldes = () => {
     };
 
     const test = ()=>{
-        console.log("it works");
+        console.log("it works!!!");
     }
 
     const getRowStyle  = params => {
