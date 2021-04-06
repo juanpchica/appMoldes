@@ -8,7 +8,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Link } from 'react-router-dom';
 
 export const Moldes = () => {
-    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes?token='+localStorage.getItem("token-molde");
+    const apiURL = 'http://192.168.1.7:8080/apiMoldes/api/moldes?token='+localStorage.getItem("token-molde");
     
     const [moldes,setMoldes] = useState([]);
     
