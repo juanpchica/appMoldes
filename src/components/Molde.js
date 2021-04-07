@@ -7,9 +7,9 @@ import {Alert} from '../components/Alert';
 export const Molde = () => {
     const { id } = useParams();
     
-    const apiURL = 'http://192.168.1.7:8080/apiMoldes/api/moldes';
+    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes';
     
-    const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",tipo:"",ubicacion:"",cantidad:"",id:id});
+    const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",codigo:"",tipo:"",ubicacion:"",cantidad:"",id:id});
     const [isLoading,setIsLoading] = useState(true)
     const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
     const [redirect,setRedirect] = useState(false);
@@ -63,7 +63,7 @@ export const Molde = () => {
             fetch(apiURL+'/actualizar', requestOptions)
                 .then(response =>{
                     if(response.ok){
-                        response.json()
+                        response.json();
                     }else{
                         showAlert(true, "Error al actualizar molde", "danger");
                         throw new Error('Error al actualizar molde - Problema servidor');
@@ -104,7 +104,19 @@ export const Molde = () => {
 
                     <Form.Group as={Col}>
                         <Form.Label>Tipo</Form.Label>
-                        <Form.Control type="text" value={molde.tipo} onChange={(e)=>{setMolde({...molde,tipo:e.target.value})}} disabled />
+                        <Form.Control as="select" value={molde.tipo} onChange={e => {setMolde({...molde,tipo:e.target.value})}}>
+                            <option >Seleccionar</option>
+                            <option value="POTENCIA">POTENCIA</option>
+                            <option value="DISTRIBUCION">DISTRIBUCION</option>
+                            <option value="GIRATORIO">GIRATORIO</option>
+                            <option value="OVALADOS">OVALADOS</option>
+                            <option value="CIRCULAR">CIRCULAR</option>
+                        </Form.Control>
+                    </Form.Group>
+
+                    <Form.Group as={Col}>
+                        <Form.Label>Código</Form.Label>
+                        <Form.Control type="text" value={molde.codigo} onChange={(e)=>{setMolde({...molde,codigo:e.target.value})}} disabled/>
                     </Form.Group>
                 </Form.Row>
 

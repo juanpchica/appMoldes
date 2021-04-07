@@ -8,7 +8,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import { Link } from 'react-router-dom';
 
 export const Moldes = () => {
-    const apiURL = 'http://192.168.1.7:8080/apiMoldes/api/moldes?token='+localStorage.getItem("token-molde");
+    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes?token='+localStorage.getItem("token-molde");
     
     const [moldes,setMoldes] = useState([]);
     
@@ -63,6 +63,7 @@ export const Moldes = () => {
                 <AgGridColumn field="cantidad" headerName="CANTIDAD" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
                 <AgGridColumn field="ubicacion" headerName="UBICACIÓN" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
                 <AgGridColumn field="tipo" headerName="TIPO" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
+                <AgGridColumn field="codigo" headerName="CÓDIGO" sortable={ true } filter={true }  resizable={true} flex={1}></AgGridColumn>
                 <AgGridColumn field="id" headerName="EDITAR"sortable={ true } width="100" filter={false } resizable={true} cellRenderer="cellRenderButton" ></AgGridColumn>
             </AgGridReact>
         </div>
