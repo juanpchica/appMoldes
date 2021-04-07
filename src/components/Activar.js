@@ -5,7 +5,7 @@ import {Alert} from '../components/Alert';
 
 
 export const Activar = () => {
-    const apiURL = "http://localhost:8084/apiMoldes/api/moldes/activar/";
+    const apiURL = "http://192.168.1.7:8080/apiMoldes/api/moldes/activar/";
     const [user,setUser] = useState("");
     const [passwd,setPasswd] = useState("");
     const [alert, setAlert] = useState({ show: false, msg: "", type: "" });
