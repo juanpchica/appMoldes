@@ -7,7 +7,7 @@ import {Alert} from '../components/Alert';
 export const Molde = () => {
     const { id } = useParams();
     
-    const apiURL = 'http://192.168.1.7:8080/apiMoldes/api/moldes';
+    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes';
     
     const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",codigo:"",tipo:"",ubicacion:"",cantidad:"",id:id});
     const [isLoading,setIsLoading] = useState(true)
@@ -62,7 +62,7 @@ export const Molde = () => {
                 nuevo:molde.nuevo,
                 cantidad:molde.cantidad});
                 
-        console.log(JSON.stringify(molde));
+        console.log(JSON.stringify(molde),"Molde actualizado");
 
         if(!molde.cantidad){
             showAlert(true, "Error, campo cantidad no debe ir vacio!!", "danger");
