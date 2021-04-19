@@ -12,7 +12,7 @@ import { Activar } from "./components/Activar";
 function App() { 
   return (
     <section>
-      <Router basename={'/'}>
+      <Router basename={'/moldes/'}>
         <Header />
         <Switch>
           <Route exact path="/">

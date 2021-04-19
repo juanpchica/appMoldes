@@ -7,7 +7,7 @@ import {Alert} from '../components/Alert';
 export const Molde = () => {
     const { id } = useParams();
     
-    const apiURL = 'http://localhost:8084/apiMoldes/api/moldes';
+    const apiURL = 'http://192.168.1.7:8080/apiMoldes/api/moldes';
     
     const [molde,setMolde] = useState({dimensiones:"",columna:"",lado:"",codigo:"",tipo:"",ubicacion:"",cantidad:"",id:id});
     const [isLoading,setIsLoading] = useState(true)
