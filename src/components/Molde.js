@@ -49,6 +49,19 @@ export const Molde = () => {
 
     const updateMolde = (e) => {
         e.preventDefault();
+        setMolde({dimensiones:molde.dimensiones,
+                columna:molde.columna,
+                lado:molde.lado,
+                tipo:molde.tipo,
+                ubicacion:molde.ubicacion,
+                estado:molde.estado,
+                soporte:molde.soporte,
+                boquete:molde.boquete,
+                codigo:molde.codigo,
+                id:molde.id,
+                nuevo:molde.nuevo,
+                cantidad:molde.cantidad});
+                
         console.log(JSON.stringify(molde));
 
         if(!molde.cantidad){
